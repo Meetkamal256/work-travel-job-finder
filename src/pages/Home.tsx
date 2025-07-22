@@ -23,8 +23,7 @@ const Home = () => {
       selectedIndustry === "" || company.industry === selectedIndustry;
 
     const workTypeMatch =
-      !("workType" in company) || // if no field, include by default
-      company.workType === workType;
+      !("workType" in company) || company.workType === workType;
 
     return stateMatch && industryMatch && workTypeMatch;
   });
@@ -35,32 +34,47 @@ const Home = () => {
         Work Travel Job Finder
       </h1>
 
-      <div className="flex flex-col md:flex-row md:space-x-4 mb-6">
-        <FilterSelect
-          label="Filter by State"
-          options={stateOptions}
-          value={selectedState}
-          onChange={setSelectedState}
-        />
-        <FilterSelect
-          label="Filter by Industry"
-          options={industryOptions}
-          value={selectedIndustry}
-          onChange={setSelectedIndustry}
-        />
-        <ToggleButton value={workType} onChange={setWorkType} />
-      </div>
+      {/* Responsive layout: stacked on mobile, side-by-side on desktop */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Left Section - Filters + Job Cards */}
+        <div className="lg:w-2/3 w-full">
+          <div className="flex flex-col md:flex-row md:space-x-4 mb-6">
+            <FilterSelect
+              label="Filter by State"
+              options={stateOptions}
+              value={selectedState}
+              onChange={setSelectedState}
+            />
+            <FilterSelect
+              label="Filter by Industry"
+              options={industryOptions}
+              value={selectedIndustry}
+              onChange={setSelectedIndustry}
+            />
+            <ToggleButton value={workType} onChange={setWorkType} />
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCompanies.map((company) => (
-          <JobCard key={company.companyId} {...company} />
-        ))}
-      </div>
-      {filteredCompanies.length === 0 && (
-        <p className="text-center text-gray-600 mt-8 text-lg">
-          ⚠️ No jobs found for this filter. Try a different state or industry.
-        </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {filteredCompanies.map((company) => (
+              <JobCard key={company.companyId} {...company} />
+            ))}
+          </div>
+          
+          {filteredCompanies.length === 0 && (
+            <p className="text-center text-gray-600 mt-8 text-lg">
+              ⚠️ No jobs found for this filter. Try a different state or
+              industry.
+            </p>
           )}
+        </div>
+        
+        {/* Right Section - Placeholder for map or job details */}
+        <div className="lg:w-1/3 w-full bg-white rounded-xl shadow p-6 min-h-[400px] flex items-center justify-center">
+          <p className="text-gray-500 text-center">
+            🗺️ Map or job details will appear here soon.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
