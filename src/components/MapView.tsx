@@ -4,7 +4,7 @@ type MapViewProps = {
 
 const MapView = ({selectedState}: MapViewProps) => {
   return (
-    <div className="w-full h-64 md:h-full bg-blue-100 rounded-xl flex items-center justify-center text-center p-4 shadow-md">
+    <div className="h-64 md:h-full bg-blue-100 rounded-xl flex items-center justify-center text-center p-4 shadow-md">
       <div>
         <div className="text-2xl">🗺️</div>
         <p className="mt-2 text-gray-700 font-medium">

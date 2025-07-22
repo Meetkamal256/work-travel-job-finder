@@ -3,6 +3,7 @@ import FilterSelect from "../components/FilterSelect";
 import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
+import MapView from "../components/MapView";
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -33,7 +34,7 @@ const Home = () => {
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6">
         Work Travel Job Finder
       </h1>
-
+      
       {/* Responsive layout: stacked on mobile, side-by-side on desktop */}
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Section - Filters + Job Cards */}
@@ -53,7 +54,7 @@ const Home = () => {
             />
             <ToggleButton value={workType} onChange={setWorkType} />
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredCompanies.map((company) => (
               <JobCard key={company.companyId} {...company} />
@@ -69,11 +70,7 @@ const Home = () => {
         </div>
         
         {/* Right Section - Placeholder for map or job details */}
-        <div className="lg:w-1/3 w-full bg-white rounded-xl shadow p-6 min-h-[400px] flex items-center justify-center">
-          <p className="text-gray-500 text-center">
-            🗺️ Map or job details will appear here soon.
-          </p>
-        </div>
+        <MapView selectedState={selectedState} />
       </div>
     </div>
   );
