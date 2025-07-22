@@ -1,4 +1,5 @@
 import FilterSelect from "../components/FilterSelect";
+import ToggleButton from "../components/ToggleButton";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
       <div className="flex flex-wrap">
         <FilterSelect />
       </div>
+      <ToggleButton />
     </div>
   );
 };
