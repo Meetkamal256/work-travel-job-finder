@@ -1,10 +1,14 @@
-import { useState } from "react";
+type ToggleButtonProps = {
+  value: "Onsite" | "Remote";
+  onChange: (value: "Onsite" | "Remote") => void;
+};
 
-const ToggleButton: React.FC = () => {
-  const [isOnsite, setIsOnsite] = useState<boolean>(true);
+const ToggleButton: React.FC<ToggleButtonProps> = ({ value, onChange }) => {
+  const isOnsite = value === "Onsite";
   
   const handleToggle = () => {
-    setIsOnsite((prev) => !prev);
+    const newValue = isOnsite ? "Remote" : "Onsite";
+    onChange(newValue);
   };
   
   return (
@@ -26,9 +30,7 @@ const ToggleButton: React.FC = () => {
         />
       </button>
       
-      <p className="mt-2 text-sm text-gray-600">
-        {isOnsite ? "Onsite" : "Remote"}
-      </p>
+      <p className="mt-2 text-sm text-gray-600">{value}</p>
     </div>
   );
 };
