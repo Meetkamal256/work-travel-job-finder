@@ -3,6 +3,7 @@ import FilterSelect from "../components/FilterSelect";
 import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
+import MapView from "../components/MapView";
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -60,7 +61,7 @@ const Home = () => {
         <p className="text-center text-gray-600 mt-8 text-lg">
           ⚠️ No jobs found for this filter. Try a different state or industry.
         </p>
-      )}
+          )}
     </div>
   );
 };
