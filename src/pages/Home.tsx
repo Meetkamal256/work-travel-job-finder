@@ -7,7 +7,7 @@ import companies from "../data/companies.json";
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
-  const [workType, setWorkType] = useState<"Onsite" | "Remote">("Onsite"); 
+  const [workType, setWorkType] = useState<"Onsite" | "Remote">("Onsite");
 
   const stateOptions = Array.from(
     new Set(companies.map((c) => c.state))
@@ -56,6 +56,11 @@ const Home = () => {
           <JobCard key={company.companyId} {...company} />
         ))}
       </div>
+      {filteredCompanies.length === 0 && (
+        <p className="text-center text-gray-600 mt-8 text-lg">
+          ⚠️ No jobs found for this filter. Try a different state or industry.
+        </p>
+      )}
     </div>
   );
 };
