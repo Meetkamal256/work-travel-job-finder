@@ -34,7 +34,7 @@ const Home = () => {
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6">
         Work Travel Job Finder
       </h1>
-      
+
       {/* Responsive layout: stacked on mobile, side-by-side on desktop */}
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Section - Filters + Job Cards */}
@@ -54,13 +54,13 @@ const Home = () => {
             />
             <ToggleButton value={workType} onChange={setWorkType} />
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredCompanies.map((company) => (
               <JobCard key={company.companyId} {...company} />
             ))}
           </div>
-          
+
           {filteredCompanies.length === 0 && (
             <p className="text-center text-gray-600 mt-8 text-lg">
               ⚠️ No jobs found for this filter. Try a different state or
@@ -68,9 +68,11 @@ const Home = () => {
             </p>
           )}
         </div>
-        
+
         {/* Right Section - Placeholder for map or job details */}
-        <MapView selectedState={selectedState} />
+        <div className="lg:w-1/3 w-full h-64 lg:h-auto">
+          <MapView selectedState={selectedState} />
+        </div>
       </div>
     </div>
   );
