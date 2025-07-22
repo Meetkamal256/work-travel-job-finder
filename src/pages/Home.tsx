@@ -3,7 +3,6 @@ import FilterSelect from "../components/FilterSelect";
 import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
-import MapView from "../components/MapView";
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
