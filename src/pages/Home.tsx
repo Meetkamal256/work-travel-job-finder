@@ -9,6 +9,7 @@ const Home = () => {
   const [selectedState, setSelectedState] = useState("");
   const [selectedIndustry, setSelectedIndustry] = useState("");
   const [workType, setWorkType] = useState<"Onsite" | "Remote">("Onsite");
+  const [contactedCompanies, setContactedCompanies] = useState<string[]>([]);
 
   const stateOptions = Array.from(
     new Set(companies.map((c) => c.state))
@@ -23,9 +24,16 @@ const Home = () => {
       selectedIndustry === "" || company.industry === selectedIndustry;
     const workTypeMatch =
       !("workType" in company) || company.workType === workType;
-
     return stateMatch && industryMatch && workTypeMatch;
   });
+
+  const toggleContacted = (companyId: string) => {
+    setContactedCompanies((prev) =>
+      prev.includes(companyId)
+        ? prev.filter((id) => id !== companyId)
+        : [...prev, companyId]
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 md:px-10 lg:px-16">
@@ -33,7 +41,6 @@ const Home = () => {
         Work Travel Job Finder
       </h1>
 
-      {/* Responsive layout: stacked on mobile, side-by-side on desktop */}
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Section - Filters + Job Cards */}
         <div className="lg:w-2/3 w-full">
@@ -55,7 +62,12 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredCompanies.map((company) => (
-              <JobCard key={company.companyId} {...company} />
+              <JobCard
+                key={company.companyId}
+                {...company}
+                isContacted={contactedCompanies.includes(company.companyId)}
+                onToggleContacted={() => toggleContacted(company.companyId)}
+              />
             ))}
           </div>
 
