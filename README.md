@@ -1,4 +1,4 @@
-# Work Travel Job Finder 🌍💼
+# Work Travel Job Finder 
 
 This is a frontend coding challenge project built for Gabriel via Upwork. It helps users find job opportunities across U.S. states based on selected industries, with an interactive map and intuitive filters.
 
@@ -8,11 +8,11 @@ This is a frontend coding challenge project built for Gabriel via Upwork. It hel
 
 👉 [View Live Project on Vercel](https://work-travel-job-finder.vercel.app/)
 
-## 📦 GitHub Repository
+## GitHub Repository
 
 [work-travel-job-finder](https://github.com/Meetkamal256/work-travel-job-finder)
 
-## 🚀 Features
+## Features
 
 -**Filter by State and Industry** — Select a U.S. state and preferred industry to view relevant companies.
 - **Interactive Map (React Leaflet)** — The selected state is dynamically displayed on the map.
@@ -28,7 +28,7 @@ This is a frontend coding challenge project built for Gabriel via Upwork. It hel
 - **React Leaflet** for map rendering
 - **Local JSON data** for companies
 
-## 🗂️ Folder Structure
+## Folder Structure
 
 The folder structure is being further organized to improve maintainability. Some components include:
 
@@ -36,7 +36,7 @@ The folder structure is being further organized to improve maintainability. Some
 - `/data`: Contains the `companies.json` dataset
 - `/pages` or `/src`: Main page logic and layout
 
-## 🧪 Installation & Setup (Optional)
+## Installation & Setup (Optional)
 
 If you’d like to run locally:
 
