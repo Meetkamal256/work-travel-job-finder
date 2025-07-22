@@ -13,7 +13,6 @@ const Home = () => {
   const stateOptions = Array.from(
     new Set(companies.map((c) => c.state))
   ).sort();
-
   const industryOptions = Array.from(
     new Set(companies.map((c) => c.industry))
   ).sort();
@@ -22,7 +21,6 @@ const Home = () => {
     const stateMatch = selectedState === "" || company.state === selectedState;
     const industryMatch =
       selectedIndustry === "" || company.industry === selectedIndustry;
-
     const workTypeMatch =
       !("workType" in company) || company.workType === workType;
 
@@ -69,9 +67,13 @@ const Home = () => {
           )}
         </div>
 
-        {/* Right Section - Placeholder for map or job details */}
+        {/* Right Section - Map View */}
         <div className="lg:w-1/3 w-full h-64 lg:h-auto">
-          <MapView selectedState={selectedState} />
+          <MapView
+            selectedState={selectedState}
+            selectedIndustry={selectedIndustry}
+            companies={filteredCompanies}
+          />
         </div>
       </div>
     </div>

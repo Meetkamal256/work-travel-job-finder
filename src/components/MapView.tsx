@@ -1,9 +1,20 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
+import { useEffect } from "react";
 
-type MapViewProps = {
-  selectedState: string;
+type Company = {
+  companyId: string;
+  email: string;
+  state: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  companyName: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  industry: string;
 };
 
 // Fix Leaflet's default icon issue
@@ -15,8 +26,41 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-const MapView = ({ selectedState }: MapViewProps) => {
+// Custom component to update map view when companies change
+const MapUpdater = ({ companies }: { companies: Company[] }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (companies.length > 0) {
+      const bounds = L.latLngBounds(
+        companies.map((c) => [c.latitude, c.longitude] as [number, number])
+      );
+      map.fitBounds(bounds, { padding: [50, 50] });
+    }
+  }, [companies]);
+
+  return null;
+};
+
+type MapViewProps = {
+  selectedState: string;
+  selectedIndustry: string;
+  companies: Company[];
+};
+
+const MapView = ({
+  selectedState,
+  selectedIndustry,
+  companies,
+}: MapViewProps) => {
   const defaultPosition: [number, number] = [9.082, 8.6753]; // Nigeria center
+
+  const filteredCompanies = companies.filter((company) => {
+    const matchState = selectedState === "" || company.state === selectedState;
+    const matchIndustry =
+      selectedIndustry === "" || company.industry === selectedIndustry;
+    return matchState && matchIndustry;
+  });
 
   return (
     <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[900px] bg-blue-100 rounded-xl overflow-hidden shadow-md mb-10">
@@ -30,13 +74,23 @@ const MapView = ({ selectedState }: MapViewProps) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={defaultPosition}>
-          <Popup>
-            {selectedState
-              ? `Showing job locations in ${selectedState}`
-              : "Select a state to see jobs on the map"}
-          </Popup>
-        </Marker>
+
+        {filteredCompanies.map((company) => (
+          <Marker
+            key={company.companyId}
+            position={[company.latitude, company.longitude]}
+          >
+            <Popup>
+              <strong>{company.companyName}</strong>
+              <br />
+              {company.address}
+              <br />
+              {company.state}
+            </Popup>
+          </Marker>
+        ))}
+
+        <MapUpdater companies={filteredCompanies} />
       </MapContainer>
     </div>
   );
