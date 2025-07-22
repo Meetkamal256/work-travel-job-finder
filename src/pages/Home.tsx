@@ -7,10 +7,11 @@ const Home = () => {
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6">
         Work Travel Job Finder
       </h1>
-      <div className="flex flex-wrap">
+
+      <div className="flex flex-col md:flex-row md:space-x-4">
         <FilterSelect />
+        <ToggleButton />
       </div>
-      <ToggleButton />
     </div>
   );
 };
