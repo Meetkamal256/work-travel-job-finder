@@ -1,69 +1,47 @@
-# React + TypeScript + Vite
+# Work Travel Job Finder 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a frontend coding challenge project built for Gabriel via Upwork. It helps users find job opportunities across U.S. states based on selected industries, with an interactive map and intuitive filters.
 
-Currently, two official plugins are available:
+## 🔗 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1915" height="928" alt="Image" src="https://github.com/user-attachments/assets/11fd2d68-78a7-471d-9813-80ed36a2c981" />
 
-## Expanding the ESLint configuration
+👉 [View Live Project on Vercel](https://work-travel-job-finder.vercel.app/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## GitHub Repository
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+[work-travel-job-finder](https://github.com/Meetkamal256/work-travel-job-finder)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+-**Filter by State and Industry** — Select a U.S. state and preferred industry to view relevant companies.
+- **Interactive Map (React Leaflet)** — The selected state is dynamically displayed on the map.
+- **Mark Contacted Employers** — Users can mark which employers they’ve contacted (non-persistent).
+- **Mobile-Responsive UI** — Ongoing improvements for responsiveness on all screen sizes.
+- **Toggle Remote Option** — Present as UI element (future enhancement).
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React** (with Vite)
+- **TypeScript**
+- **Tailwind CSS** for styling
+- **React Leaflet** for map rendering
+- **Local JSON data** for companies
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Folder Structure
+
+The folder structure is being further organized to improve maintainability. Some components include:
+
+- `/components`: Reusable UI components (e.g., `JobCard`, `FilterSelect`, `MapView`)
+- `/data`: Contains the `companies.json` dataset
+- `/pages` or `/src`: Main page logic and layout
+
+## Installation & Setup (Optional)
+
+If you’d like to run locally:
+
+```bash
+git clone https://github.com/Meetkamal256/work-travel-job-finder.git
+cd work-travel-job-finder
+npm install
+npm run dev
