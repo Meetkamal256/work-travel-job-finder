@@ -1,19 +1,4 @@
-type JobCardProps = {
-  companyId: string;
-  companyName: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  address: string;
-  state: string;
-  latitude: number;
-  longitude: number;
-  industry: string;
-  isContacted: boolean;
-  onToggleContacted: () => void;
-};
-
+import type { JobCardProps } from "../types";
 
 const JobCard = ({
   companyName,

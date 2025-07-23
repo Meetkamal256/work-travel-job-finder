@@ -2,22 +2,9 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import * as L from "leaflet";
 import { useEffect } from "react";
+import type { Company } from "../types";
 
-type Company = {
-  companyId: string;
-  email: string;
-  state: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  companyName: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-  industry: string;
-};
 
-// Fix Leaflet's default icon issue
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
