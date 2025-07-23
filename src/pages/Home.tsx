@@ -80,7 +80,7 @@ const Home = () => {
         </div>
 
         {/* Right Section - Map View */}
-        <div className="lg:w-1/3 w-full h-64 lg:h-auto">
+        <div className="lg:w-1/3 w-full min-h-[400px] sm:min-h-[500px] lg:h-auto mb-10">
           <MapView
             selectedState={selectedState}
             selectedIndustry={selectedIndustry}
