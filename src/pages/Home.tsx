@@ -5,6 +5,7 @@ import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
 import MapView from "../components/MapView";
+import ThemeToggleSwitch from "../components/ThemeToggleSwitch"; // ✅ Added import
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -51,8 +52,13 @@ const Home = () => {
   }, [selectedState, selectedIndustry, workType]);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-8 sm:px-6 md:px-10 lg:px-16">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 mb-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 px-4 py-8 sm:px-6 md:px-10 lg:px-16 text-gray-800 dark:text-gray-100">
+      {/* ✅ Theme Toggle in top-right */}
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggleSwitch />
+      </div>
+
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">
         Work Travel Job Finder
       </h1>
 
@@ -105,7 +111,7 @@ const Home = () => {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-gray-600 mt-8 text-lg"
+              className="text-center text-gray-600 dark:text-gray-400 mt-8 text-lg"
             >
               ⚠️ No jobs found for this filter. Try a different state or
               industry.
@@ -124,7 +130,7 @@ const Home = () => {
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="px-4 py-2 bg-indigo-100 rounded disabled:opacity-50"
+                className="px-4 py-2 bg-indigo-100 dark:bg-indigo-800 dark:text-white rounded disabled:opacity-50"
               >
                 Prev
               </button>
@@ -136,7 +142,7 @@ const Home = () => {
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 bg-indigo-100 rounded disabled:opacity-50"
+                className="px-4 py-2 bg-indigo-100 dark:bg-indigo-800 dark:text-white rounded disabled:opacity-50"
               >
                 Next
               </button>
