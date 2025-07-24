@@ -15,28 +15,38 @@ const JobCard = ({
   onToggleContacted,
 }: JobCardProps) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 mb-4">
-      <h2 className="text-lg font-semibold text-indigo-700">{companyName}</h2>
-      <p className="text-sm text-gray-600">
-        {address}, {state}
+    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-5 mb-5 transition-colors duration-300">
+      <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+        {companyName}
+      </h2>
+
+      <div className="mt-1 text-sm text-gray-700 dark:text-gray-300">
+        <p>
+          {address}, {state}
+        </p>
+        <p className="mt-1">
+          Contact: {firstName} {lastName}
+        </p>
+        <p>Email: {email}</p>
+        <p>Phone: {phoneNumber}</p>
+        <p className="mt-1">Industry: {industry}</p>
+        <p>
+          Coordinates: {latitude}, {longitude}
+        </p>
+      </div>
+
+      <p className="text-sm mt-3 font-semibold text-indigo-600 dark:text-indigo-300">
+        Onsite
       </p>
-      <p className="text-sm text-gray-600 mt-1">
-        Contact: {firstName} {lastName}
-      </p>
-      <p className="text-sm text-gray-600">Email: {email}</p>
-      <p className="text-sm text-gray-600">Phone: {phoneNumber}</p>
-      <p className="text-sm text-gray-600 mt-1">Industry: {industry}</p>
-      <p className="text-sm text-gray-600">
-        Coordinates: {latitude}, {longitude}
-      </p>
-      <p className="text-sm mt-2 font-medium text-indigo-500">Onsite</p>
+
       <button
         onClick={onToggleContacted}
-        className={`mt-3 text-sm px-3 py-1 rounded border ${
-          isContacted
-            ? "bg-green-500 text-white hover:bg-green-600"
-            : "bg-gray-200 hover:bg-gray-300"
-        }`}
+        className={`mt-4 text-sm px-4 py-2 rounded-md font-medium border transition-colors duration-200
+          ${
+            isContacted
+              ? "bg-green-500 text-white hover:bg-green-600"
+              : "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600"
+          }`}
       >
         {isContacted ? "✓ Contacted" : "Mark as Contacted"}
       </button>

@@ -5,7 +5,7 @@ import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
 import MapView from "../components/MapView";
-import ThemeToggleSwitch from "../components/ThemeToggleSwitch"; // ✅ Added import
+import ThemeToggleSwitch from "../components/ThemeToggleSwitch"; 
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -13,16 +13,16 @@ const Home = () => {
   const [workType, setWorkType] = useState<"Onsite" | "Remote">("Onsite");
   const [contactedCompanies, setContactedCompanies] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-
+  
   const itemsPerPage = 6;
-
+  
   const stateOptions = Array.from(
     new Set(companies.map((c) => c.state))
   ).sort();
   const industryOptions = Array.from(
     new Set(companies.map((c) => c.industry))
   ).sort();
-
+  
   const filteredCompanies = companies.filter((company) => {
     const stateMatch = selectedState === "" || company.state === selectedState;
     const industryMatch =
@@ -31,14 +31,14 @@ const Home = () => {
       !("workType" in company) || company.workType === workType;
     return stateMatch && industryMatch && workTypeMatch;
   });
-
+  
   const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
-
+  
   const paginatedCompanies = filteredCompanies.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
+  
   const toggleContacted = (companyId: string) => {
     setContactedCompanies((prev) =>
       prev.includes(companyId)
@@ -46,22 +46,26 @@ const Home = () => {
         : [...prev, companyId]
     );
   };
-
+  
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState, selectedIndustry, workType]);
-
+  
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 px-4 py-8 sm:px-6 md:px-10 lg:px-16 text-gray-800 dark:text-gray-100">
-      {/* ✅ Theme Toggle in top-right */}
       <div className="absolute top-4 right-4 z-50">
         <ThemeToggleSwitch />
       </div>
-
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-700 dark:text-indigo-300 mb-6">
+      
+      <h1
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center  
+  bg-gradient-to-r from-indigo-600 to-blue-400 
+  bg-clip-text text-transparent 
+  dark:bg-none dark:text-slate-300 mb-8"
+      >
         Work Travel Job Finder
       </h1>
-
+      
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Section - Filters + Job Cards */}
         <div className="lg:w-2/3 w-full">
