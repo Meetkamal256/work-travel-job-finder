@@ -5,7 +5,7 @@ import ToggleButton from "../components/ToggleButton";
 import JobCard from "../components/JobCard";
 import companies from "../data/companies.json";
 import MapView from "../components/MapView";
-import ThemeToggleSwitch from "../components/ThemeToggleSwitch"; 
+import ThemeToggleSwitch from "../components/ThemeToggleSwitch";
 
 const Home = () => {
   const [selectedState, setSelectedState] = useState("");
@@ -13,23 +13,23 @@ const Home = () => {
   const [workType, setWorkType] = useState<"Onsite" | "Remote">("Onsite");
   const [contactedCompanies, setContactedCompanies] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const itemsPerPage = 6;
-  
+
   const stateOptions = Array.from(
     new Set(companies.map((c) => c.state))
   ).sort();
   const industryOptions = Array.from(
     new Set(companies.map((c) => c.industry))
   ).sort();
-  
+
   const filteredCompanies = companies.filter((company) => {
-    const stateMatch = selectedState === "" || company.state === selectedState;
-    const industryMatch =
-      selectedIndustry === "" || company.industry === selectedIndustry;
-    const workTypeMatch =
-      !("workType" in company) || company.workType === workType;
-    return stateMatch && industryMatch && workTypeMatch;
+    const stateMatch = selectedState ? company.state === selectedState : true;
+    const industryMatch = selectedIndustry
+      ? company.industry === selectedIndustry
+      : true;
+
+    return stateMatch && industryMatch;
   });
   
   const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
@@ -49,7 +49,7 @@ const Home = () => {
   
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedState, selectedIndustry, workType]);
+  }, [selectedState, selectedIndustry]);
   
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 px-4 py-8 sm:px-6 md:px-10 lg:px-16 text-gray-800 dark:text-gray-100">
