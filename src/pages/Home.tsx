@@ -61,7 +61,7 @@ const Home = () => {
         className="text-3xl sm:text-4xl md:text-5xl font-bold text-center  
   bg-gradient-to-r from-indigo-600 to-blue-400 
   bg-clip-text text-transparent 
-  dark:bg-none dark:text-slate-300 mb-8"
+  dark:bg-none dark:text-slate-300 mb-8 mt-6"
       >
         Work Travel Job Finder
       </h1>
@@ -84,7 +84,7 @@ const Home = () => {
             />
             <ToggleButton value={workType} onChange={setWorkType} />
           </div>
-
+          
           {/* Cards with animation */}
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimatePresence mode="wait">
@@ -110,7 +110,7 @@ const Home = () => {
               ))}
             </AnimatePresence>
           </motion.div>
-
+          
           {filteredCompanies.length === 0 && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -121,7 +121,7 @@ const Home = () => {
               industry.
             </motion.p>
           )}
-
+          
           {/* Pagination Controls */}
           {filteredCompanies.length > itemsPerPage && (
             <motion.div
@@ -153,7 +153,7 @@ const Home = () => {
             </motion.div>
           )}
         </div>
-
+        
         {/* Right Section - Map View */}
         <div className="lg:w-1/3 w-full min-h-[400px] sm:min-h-[500px] lg:h-auto mb-10">
           <MapView
