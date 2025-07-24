@@ -76,15 +76,20 @@ const Home = () => {
           </div>
 
           {/* Cards with animation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimatePresence mode="wait">
-              {paginatedCompanies.map((company) => (
+              {paginatedCompanies.map((company, index) => (
                 <motion.div
+                  layout
                   key={company.companyId}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{
+                    duration: 0.4,
+                    ease: "easeInOut",
+                    delay: index * 0.05,
+                  }}
                 >
                   <JobCard
                     {...company}
@@ -94,18 +99,28 @@ const Home = () => {
                 </motion.div>
               ))}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {filteredCompanies.length === 0 && (
-            <p className="text-center text-gray-600 mt-8 text-lg">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center text-gray-600 mt-8 text-lg"
+            >
               ⚠️ No jobs found for this filter. Try a different state or
               industry.
-            </p>
+            </motion.p>
           )}
 
           {/* Pagination Controls */}
           {filteredCompanies.length > itemsPerPage && (
-            <div className="flex justify-center gap-2 mt-8">
+            <motion.div
+              layout
+              className="flex justify-center gap-2 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
@@ -125,7 +140,7 @@ const Home = () => {
               >
                 Next
               </button>
-            </div>
+            </motion.div>
           )}
         </div>
 
