@@ -31,14 +31,14 @@ const Home = () => {
 
     return stateMatch && industryMatch;
   });
-  
+
   const totalPages = Math.ceil(filteredCompanies.length / itemsPerPage);
-  
+
   const paginatedCompanies = filteredCompanies.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-  
+
   const toggleContacted = (companyId: string) => {
     setContactedCompanies((prev) =>
       prev.includes(companyId)
@@ -46,17 +46,17 @@ const Home = () => {
         : [...prev, companyId]
     );
   };
-  
+
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedState, selectedIndustry]);
-  
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 px-4 py-8 sm:px-6 md:px-10 lg:px-16 text-gray-800 dark:text-gray-100">
       <div className="absolute top-4 right-4 z-50">
         <ThemeToggleSwitch />
       </div>
-      
+
       <h1
         className="text-3xl sm:text-4xl md:text-5xl font-bold text-center  
   bg-gradient-to-r from-indigo-600 to-blue-400 
@@ -65,26 +65,24 @@ const Home = () => {
       >
         Work Travel Job Finder
       </h1>
-      
+      <div className="flex flex-col md:flex-row md:space-x-4 mb-6">
+        <FilterSelect
+          label="Filter by State"
+          options={stateOptions}
+          value={selectedState}
+          onChange={setSelectedState}
+        />
+        <FilterSelect
+          label="Filter by Industry"
+          options={industryOptions}
+          value={selectedIndustry}
+          onChange={setSelectedIndustry}
+        />
+        <ToggleButton value={workType} onChange={setWorkType} />
+      </div>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Section - Filters + Job Cards */}
         <div className="lg:w-2/3 w-full">
-          <div className="flex flex-col md:flex-row md:space-x-4 mb-6">
-            <FilterSelect
-              label="Filter by State"
-              options={stateOptions}
-              value={selectedState}
-              onChange={setSelectedState}
-            />
-            <FilterSelect
-              label="Filter by Industry"
-              options={industryOptions}
-              value={selectedIndustry}
-              onChange={setSelectedIndustry}
-            />
-            <ToggleButton value={workType} onChange={setWorkType} />
-          </div>
-          
           {/* Cards with animation */}
           <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <AnimatePresence mode="wait">
@@ -110,7 +108,7 @@ const Home = () => {
               ))}
             </AnimatePresence>
           </motion.div>
-          
+
           {filteredCompanies.length === 0 && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -121,7 +119,7 @@ const Home = () => {
               industry.
             </motion.p>
           )}
-          
+
           {/* Pagination Controls */}
           {filteredCompanies.length > itemsPerPage && (
             <motion.div
@@ -153,7 +151,7 @@ const Home = () => {
             </motion.div>
           )}
         </div>
-        
+
         {/* Right Section - Map View */}
         <div className="lg:w-1/3 w-full min-h-[400px] sm:min-h-[500px] lg:h-auto mb-10">
           <MapView
